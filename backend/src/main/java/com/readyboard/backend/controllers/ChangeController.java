@@ -3,6 +3,7 @@ package com.readyboard.backend.controllers;
 import com.readyboard.backend.models.Change;
 import com.readyboard.backend.repositories.ChangeRepository;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,11 @@ public class ChangeController {
 
     public ChangeController(ChangeRepository changeRepository) {
         this.changeRepository = changeRepository;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteChange(@PathVariable String id) {
+        changeRepository.deleteById(id);
     }
 
     @GetMapping
