@@ -19,7 +19,14 @@ public class ReadinessStatus {
     @Column(name = "display_order")
     private Integer displayOrder;
 
+    //No-argument constructor is required by JPA/Hibernate.
     public ReadinessStatus() {
+    }
+
+    //Constructor used for creating readiness status seed data.
+    public ReadinessStatus(String name, Integer displayOrder) {
+        this.name = name;
+        this.displayOrder = displayOrder;
     }
 
     public Integer getId() {

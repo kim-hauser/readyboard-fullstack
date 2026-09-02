@@ -21,6 +21,6 @@ public class ReadinessStatusController {
 
     @GetMapping
     public List<ReadinessStatus> getAllReadinessStatuses() {
-        return readinessStatusRepository.findAll();
+        return readinessStatusRepository.findAllByOrderByDisplayOrderAsc();
     }
 }
