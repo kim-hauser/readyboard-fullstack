@@ -17,6 +17,9 @@ public class Change {
     @Column(length = 20)
     private String id;
 
+    @Column(length = 200)
+    private String title;
+
     @Column(length = 500)
     private String description;
 
@@ -35,6 +38,9 @@ public class Change {
     @Column(length = 50)
     private String risk;
 
+    @Column(name = "risk_score")
+    private Integer riskScore;
+
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime createdAt;
 
@@ -50,6 +56,14 @@ public class Change {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -90,6 +104,14 @@ public class Change {
 
     public void setRisk(String risk) {
         this.risk = risk;
+    }
+
+    public Integer getRiskScore() {
+        return riskScore;
+    }
+
+    public void setRiskScore(Integer riskScore) {
+        this.riskScore = riskScore;
     }
 
     public LocalDateTime getCreatedAt() {
