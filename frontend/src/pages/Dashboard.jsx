@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import mockChanges from '../data/mockChanges'
+import { getChanges } from '../services/changeService'
 import ChangeCard from '../components/ChangeCard'
 import FilterSelect from '../components/FilterSelect'
 import MultiSelectFilter from '../components/MultiSelectFilter'
@@ -13,6 +13,15 @@ const columns = [
 ]
 
 function Dashboard() {
+
+  const [changes, setChanges] = useState([])
+  
+  useEffect(() => {
+    getChanges()
+    .then(setChanges)
+    .catch((error)) => console.error ('Error fetching changes:', error)
+  }, [])
+
   const location = useLocation()
 
   const [viewMode, setViewMode] = useState(
@@ -34,7 +43,7 @@ function Dashboard() {
   }
 
   const owners = [
-    ...new Set(mockChanges.map((change) => change.owner)),
+    ...new Set(changes.map((change) => change.owner)),
   ].sort((a, b) =>
     getLastName(a).localeCompare(getLastName(b), undefined, {
       sensitivity: 'base',
@@ -43,15 +52,15 @@ function Dashboard() {
 
   const assignmentGroups = [
     ...new Set(
-      mockChanges.map((change) => change.assignmentGroup || 'Unassigned')
+      changes.map((change) => change.assignmentGroup || 'Unassigned')
     ),
   ].sort()
 
   // Status view filtering
   const filteredStatusChanges =
     selectedOwners.length === 0
-      ? mockChanges
-      : mockChanges.filter((change) => selectedOwners.includes(change.owner))
+      ? changes
+      : changes.filter((change) => selectedOwners.includes(change.owner))
 
   const groupedChanges = filteredStatusChanges.reduce((acc, change) => {
     const key = change.status.toLowerCase()
@@ -61,7 +70,7 @@ function Dashboard() {
   }, {})
 
   // Assignment view filtering
-  const filteredAssignmentChanges = mockChanges.filter((change) => {
+  const filteredAssignmentChanges = changes.filter((change) => {
     const matchesGroup =
       selectedGroups.length === 0 ||
       selectedGroups.includes(change.assignmentGroup || 'Unassigned')

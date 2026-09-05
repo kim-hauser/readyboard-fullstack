@@ -1,5 +1,6 @@
-import { Link, useParams, useLocation } from 'react-router-dom'
-import mockChanges from '../data/mockChanges'
+import { useEffect, useState } from 'react'
+import { useParams, useLocation } from 'react-router-dom'
+import { getChangeById } from '../services/changeService'
 import ButtonLink from '../components/ButtonLink'
 
 function ChangeDetail() {
@@ -8,9 +9,31 @@ function ChangeDetail() {
   const location = useLocation()
   const fromView = location.state?.fromView || 'status' 
 
-  const change = mockChanges.find(
-    (c) => c.id.toString() === id
+  /* Replaces Mock Changes with actual state + fetch */
+
+  const [change, setChange] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+  getChangeById(id)
+    .then(setChange)
+    .catch((error) => {
+      console.error('Error fetching change:', error)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  }, [id])
+
+  if (loading) {
+  return (
+    <div className="page">
+      <section className="card">
+        <p>Loading change...</p>
+      </section>
+    </div>
   )
+}
 
   /* Checks for valid changes; gives error page if invalid ID */
   /* Also contains both variants of ButtonLink component as props */
