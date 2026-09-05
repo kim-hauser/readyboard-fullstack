@@ -5,6 +5,8 @@ import com.readyboard.backend.repositories.OwnerRepository;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,5 +30,11 @@ public class OwnerController {
     @GetMapping("/{id}")
     public Owner getOwnerById(@PathVariable Integer id) {
         return ownerRepository.findById(id).orElse(null);
+    }
+
+    @PostMapping
+    public Owner createOwner(
+            @RequestBody Owner owner) {
+        return ownerRepository.save(owner);
     }
 }
