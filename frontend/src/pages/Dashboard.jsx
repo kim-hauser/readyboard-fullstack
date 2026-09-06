@@ -19,7 +19,7 @@ function Dashboard() {
   useEffect(() => {
     getChanges()
     .then(setChanges)
-    .catch((error)) => console.error ('Error fetching changes:', error)
+    .catch((error) => console.error ('Error fetching changes:', error))
   }, [])
 
   const location = useLocation()

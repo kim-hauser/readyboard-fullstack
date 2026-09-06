@@ -3,6 +3,7 @@ package com.readyboard.backend.controllers;
 import com.readyboard.backend.models.Change;
 import com.readyboard.backend.repositories.ChangeRepository;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+// CrossOrigin allows cross-origin requests from the React dev server (localhost:5173).
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/changes")
 public class ChangeController {

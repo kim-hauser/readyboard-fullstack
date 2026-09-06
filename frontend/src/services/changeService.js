@@ -15,6 +15,7 @@ export async function getChanges() {
     assignmentGroup: change.assignmentGroup?.name ?? 'Unassigned',
     status: change.readinessStatus?.name ?? 'Pending',
   }))
+}
 
 export async function getChangeById(id) {
   const response = await fetch(`${API_URL}/${id}`)
@@ -31,5 +32,4 @@ export async function getChangeById(id) {
     assignmentGroup: change.assignmentGroup?.name ?? 'Unassigned',
     status: change.readinessStatus?.name ?? 'Pending',
   }
-}
 }
