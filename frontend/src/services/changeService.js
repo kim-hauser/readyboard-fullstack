@@ -17,6 +17,22 @@ export async function getChanges() {
   }))
 }
 
+export async function createChange(changeData) {
+  const response = await fetch('http://localhost:8080/api/changes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(changeData),
+  })
+
+  if (!response.ok) {
+    throw new Error(`Failed to create change: ${response.status}`)
+  }
+
+  return response.json()
+}
+
 export async function getChangeById(id) {
   const response = await fetch(`${API_URL}/${id}`)
 

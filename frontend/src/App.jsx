@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Dashboard from './pages/Dashboard'
 import ChangeDetail from './pages/ChangeDetail'
+import CreateChange from './pages/CreateChange'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/changes" element={<Dashboard />} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* Works as a redirect. */}
         <Route path="/change/:id" element={<ChangeDetail />} />
+        <Route path="/changes/new" element={<CreateChange />} />
       </Routes>
       <BackToTop />
       <Footer />
