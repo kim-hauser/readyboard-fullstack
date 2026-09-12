@@ -106,7 +106,7 @@ export default function ChangeForm({
           onChange={onChange}
         >
           <option value="">Select risk</option>
-           <option value="Very Low">Very Low</option>
+          <option value="Very Low">Very Low</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
