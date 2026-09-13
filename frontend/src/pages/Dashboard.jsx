@@ -127,10 +127,14 @@ function Dashboard() {
     })
   
   // Toggles between Status/Assignment views; filters live here too.
+  // Conditional rendering for dashboard-controls spaces out action buttons and filter dropdowns.
 
   return (
     <div className="page">
-      <div className="dashboard-controls">
+      <div className={`dashboard-controls ${
+        viewMode === 'assignment' ? 'assignment-controls' : ''
+      }`}
+      >
         <div className="view-toggle">
           <button
             type="button"
