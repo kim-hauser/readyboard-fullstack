@@ -238,7 +238,7 @@ function Dashboard() {
                   {changes.map((change) => (
                     <Link
                       key={change.id}
-                      to={`/change/${change.id}`}
+                      to={`/changes/${change.id}`}
                       state={{ fromView: viewMode }}
                       className="queue-row"
                     >
