@@ -1109,3 +1109,10 @@ display: inline-block;
   display: flex;
   gap: 0.75rem;
 }
+
+/* Pushes BackToTop button to the right */
+
+.back-to-top {
+  display: block;
+  margin-left: auto;
+}
