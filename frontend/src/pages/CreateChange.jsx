@@ -19,7 +19,6 @@ export default function CreateChange() {
     assignmentGroupId: '',
     readinessStatusId: '',
     risk: '',
-    riskScore: '',
   })
   
   // State for Owners, Assignment Groups, ReadinessStatus; Dropdown data:
@@ -60,7 +59,6 @@ export default function CreateChange() {
     'ownerId',
     'assignmentGroupId',
     'readinessStatusId',
-    'riskScore',
   ]
 
     setFormData((current) => ({
@@ -92,7 +90,7 @@ export default function CreateChange() {
           ? { id: formData.assignmentGroupId }
           : null, 
 
-        readinessStatus: formData. readinessStatusId
+        readinessStatus: formData.readinessStatusId
           ? { id: formData.readinessStatusId }
           : null,
 
