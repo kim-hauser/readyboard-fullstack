@@ -17,22 +17,6 @@ export async function getChanges() {
   }))
 }
 
-export async function createChange(changeData) {
-  const response = await fetch('http://localhost:8080/api/changes', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(changeData),
-  })
-
-  if (!response.ok) {
-    throw new Error(`Failed to create change: ${response.status}`)
-  }
-
-  return response.json()
-}
-
 export async function getChangeById(id) {
   const response = await fetch(`${API_URL}/${id}`)
 
@@ -48,4 +32,46 @@ export async function getChangeById(id) {
     assignmentGroup: change.assignmentGroup?.name ?? 'Unassigned',
     status: change.readinessStatus?.name ?? 'Pending',
   }
+}
+
+export async function getChangeByIdRaw(id) {
+  const response = await fetch(`${API_URL}/${id}`)
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch change')
+  }
+
+  return response.json()
+}
+
+export async function createChange(changeData) {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(changeData),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to create change')
+  }
+
+  return response.json()
+}
+
+export async function updateChange(id, changeData) {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(changeData),
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to update change')
+  }
+
+  return response.json()
 }
