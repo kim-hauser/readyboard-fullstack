@@ -6,7 +6,9 @@ export default function ChangeForm({
   assignmentGroups,
   readinessStatuses,
   submitLabel = 'Save Change',
+  disableId = true,
 }) {
+
   return (
     <form onSubmit={onSubmit}>
       <div>
@@ -17,6 +19,7 @@ export default function ChangeForm({
           type="text"
           value={formData.id}
           onChange={onChange}
+          disabled={disableId}
           required
         />
       </div>

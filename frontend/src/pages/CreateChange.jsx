@@ -118,6 +118,7 @@ export default function CreateChange() {
         assignmentGroups={assignmentGroups}
         readinessStatuses={readinessStatuses}
         submitLabel="Add Change"
+        disableId={false} // Change IDs are only allowed to be set when creating a new change.
       />
     </main>
   )
