@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
-import { getChangeById } from '../services/changeService'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { getChangeById, deleteChange } from '../services/changeService'
 import ButtonLink from '../components/ButtonLink'
 
 function ChangeDetail() {
   const { id } = useParams()
 
   const location = useLocation()
-  const fromView = location.state?.fromView || 'status' 
+  const fromView = location.state?.fromView || 'status'
+  const navigate = useNavigate()
 
   /* Replaces Mock Changes with actual state + fetch */
 
@@ -33,6 +34,23 @@ function ChangeDetail() {
       </section>
     </div>
   )
+}
+
+ //Confirmation Window for Delete:
+  
+  async function handleDelete() {
+  const confirmed = window.confirm(
+    `Delete change ${change.id}? This cannot be undone.`
+  )
+
+  if (!confirmed) return
+
+  try {
+    await deleteChange(change.id)
+    navigate('/dashboard')
+  } catch (error) {
+    console.error('Error deleting change:', error)
+  }
 }
 
   /* Checks for valid changes; gives error page if invalid ID */
@@ -74,6 +92,10 @@ function ChangeDetail() {
           >
           ← Back to {fromView === 'assignment' ? 'Assignment Group View' : 'Status View'}
         </ButtonLink>
+
+         <button type="button" onClick={handleDelete}>
+          Delete Change
+        </button> 
       </section>
     </div>
   )

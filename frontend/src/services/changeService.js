@@ -1,5 +1,6 @@
 const API_URL = 'http://localhost:8080/api/changes'
 
+// GET all
 export async function getChanges() {
   const response = await fetch(API_URL)
 
@@ -17,6 +18,7 @@ export async function getChanges() {
   }))
 }
 
+// GET by ID
 export async function getChangeById(id) {
   const response = await fetch(`${API_URL}/${id}`)
 
@@ -34,6 +36,7 @@ export async function getChangeById(id) {
   }
 }
 
+// Helper function for EditChange to get raw data.
 export async function getChangeByIdRaw(id) {
   const response = await fetch(`${API_URL}/${id}`)
 
@@ -44,6 +47,7 @@ export async function getChangeByIdRaw(id) {
   return response.json()
 }
 
+// POST (Create) Change
 export async function createChange(changeData) {
   const response = await fetch(API_URL, {
     method: 'POST',
@@ -60,6 +64,7 @@ export async function createChange(changeData) {
   return response.json()
 }
 
+// PUT (Edit/Update) Change
 export async function updateChange(id, changeData) {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
@@ -74,4 +79,16 @@ export async function updateChange(id, changeData) {
   }
 
   return response.json()
+}
+
+// DELETE Change
+
+export async function deleteChange(id) {
+  const response = await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE',
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to delete change')
+  }
 }
