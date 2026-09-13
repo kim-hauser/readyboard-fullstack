@@ -30,6 +30,13 @@ function Dashboard() {
     location.state?.restoreView || 'status'
   )
 
+  // Explicitly listen for restoreView:
+  useEffect(() => {
+    if (location.state?.restoreView) {
+      setViewMode(location.state.restoreView)
+    }
+  }, [location.state?.restoreView])
+
   // Status view filter
   const [selectedOwners, setSelectedOwners] = useState([])
 
@@ -194,7 +201,11 @@ function Dashboard() {
 
             <button
               type="button"
-              onClick={() => navigate('/changes/new')}
+              onClick={() => 
+                navigate('/changes/new', {
+                  state: { fromView: viewMode }
+                })
+              }
               className="add-change-button"
             >
               + Add Change

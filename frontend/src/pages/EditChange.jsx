@@ -3,7 +3,7 @@ import {
   updateChange,
 } from '../services/changeService'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation, useNavigate } from 'react-router-dom'
 import ChangeForm from '../components/ChangeForm'
 
 const riskScores = {
@@ -15,7 +15,15 @@ const riskScores = {
 }
 
 export default function EditChange() {
+
   const { id } = useParams()
+
+  const navigate = useNavigate()
+
+  const location = useLocation()
+
+  const [successMessage, setSuccessMessage] = useState('')
+
   const [formData, setFormData] = useState({
     id: '',
     title: '',
@@ -119,6 +127,8 @@ export default function EditChange() {
   try {
      const updatedChange = await updateChange(id, changeData)
      console.log('Updated change:', updatedChange)
+
+     setSuccessMessage('Change edited successfully.')
    } catch (error) {
      console.error('Error updating change:', error)
    }
@@ -129,10 +139,20 @@ export default function EditChange() {
       <section className="change-form-card">
           <h1>Edit Change</h1>
 
+          {successMessage && (
+            <div className="success-message" role="status">
+              ✓ {successMessage}
+            </div>
+          )}
           <ChangeForm
             formData={formData}
             onChange={handleChange}
             onSubmit={handleSubmit}
+            onCancel={() =>
+              navigate('/changes', {
+              state: { restoreView: location.state?.fromView || 'status' }
+              })
+            }
             owners={owners}
             assignmentGroups={assignmentGroups}
             readinessStatuses={readinessStatuses}

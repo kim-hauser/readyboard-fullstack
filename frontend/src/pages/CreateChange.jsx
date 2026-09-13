@@ -1,5 +1,6 @@
 import { createChange } from '../services/changeService'
 import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ChangeForm from '../components/ChangeForm'
 
 const riskScores = {
@@ -11,6 +12,13 @@ const riskScores = {
 }
 
 export default function CreateChange() {
+
+  const navigate = useNavigate()
+
+  const location = useLocation()
+
+  const [successMessage, setSuccessMessage] = useState('')
+
   const [formData, setFormData] = useState({
     id: '',
     title: '',
@@ -64,16 +72,11 @@ export default function CreateChange() {
     setFormData((current) => ({
       ...current,
       [name]:
-         numericFields.includes(name) && value !== ''
-           ? Number(value)
-           : value,
-
-      ...[name === 'risk' && {
-        riskScore: riskScores[value],
-      }],
-    }))
-  }
-
+        numericFields.includes(name) && value !== ''
+          ? Number(value)
+          : value,
+  }))
+}
   async function handleSubmit(event) {
     event.preventDefault()
 
@@ -101,6 +104,8 @@ export default function CreateChange() {
   try {
      const createdChange = await createChange(changeData)
      console.log('Created change:', createdChange)
+
+     setSuccessMessage('Change created successfully.')
    } catch (error) {
      console.error('Error creating change:', error)
    }
@@ -111,14 +116,26 @@ export default function CreateChange() {
       <section className="change-form-card">
         <h1>Add Change</h1>
 
+          {successMessage && (
+            <div className="success-message" role="status">
+              ✓ {successMessage}
+            </div>
+          )}
+
         <ChangeForm
           formData={formData}
           onChange={handleChange}
           onSubmit={handleSubmit}
+          onCancel={() =>
+            navigate('/changes', {
+            state: { restoreView: location.state?.fromView || 'status' }
+            })
+          }
           owners={owners}
           assignmentGroups={assignmentGroups}
           readinessStatuses={readinessStatuses}
           submitLabel="Add Change"
+          cancelLabel="Back to Changes"
           disableId={false} // Change IDs are only allowed to be set when creating a new change.
         />
       </section>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams} from 'react-router-dom'
 import { getChangeById, deleteChange } from '../services/changeService'
 import ButtonLink from '../components/ButtonLink'
 
@@ -101,6 +101,8 @@ return (
           <ButtonLink
             to={`/changes/${change.id}/edit`}
             variant="secondary"
+            to={`/changes/${change.id}/edit`}
+            state={{ fromView: location.state?.fromView || 'status' }}
           >
             Edit Change
           </ButtonLink>

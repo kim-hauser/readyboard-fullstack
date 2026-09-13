@@ -2,10 +2,12 @@ export default function ChangeForm({
   formData,
   onChange,
   onSubmit,
+  onCancel,
   owners,
   assignmentGroups,
   readinessStatuses,
   submitLabel = 'Save Change',
+  cancelLabel = 'Back to Changes',
   disableId = true,
 }) {
 
@@ -116,8 +118,22 @@ export default function ChangeForm({
           <option value="Very High">Very High</option>
         </select>
       </div>
+      
+       <div className="form-actions">
+        {onCancel && (
+          <button
+            type="button"
+            className="secondary-button"
+            onClick={onCancel}
+          >
+            ← {cancelLabel}
+          </button>
+        )}
 
-      <button type="submit">{submitLabel}</button>
+        <button type="submit">
+          {submitLabel}
+        </button>
+      </div>
     </form>
   )
 }

@@ -75,7 +75,8 @@ a:hover {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+select:focus-visible {
   outline: 3px solid rgba(240, 196, 81, 0.7);
   outline-offset: 3px;
 }
@@ -243,12 +244,9 @@ li + li {
    Buttons
    ========================= */
 
-button {
-  font: inherit;
-}
-
 button,
 .btn {
+  font: inherit;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -448,10 +446,6 @@ button:disabled,
   min-width: 190px;
   margin: 0;
   vertical-align: middle;
-}
-
-#riskFilter {
-  min-width: 190px;
 }
 
 .filter-dropdown:hover {
@@ -718,7 +712,6 @@ button:disabled,
 
 .grouped-cards {
   display: grid;
-  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -906,6 +899,35 @@ button:disabled,
    Forms
    ========================= */
 
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  margin: 0;
+}
+
+.form-actions .secondary-button {
+  background: rgba(202, 125, 220, 0.08);
+  border: 1px solid rgba(202, 125, 220, 0.25);
+  color: var(--text-soft);
+  box-shadow: none;
+  transform: none;
+  filter: none;
+}
+
+.form-actions .secondary-button:hover {
+  background: rgba(202, 125, 220, 0.14);
+  border-color: rgba(202, 125, 220, 0.4);
+  color: var(--text);
+  box-shadow: none;
+  transform: none;
+  filter: none;
+}
+
 .change-form-page {
   display: flex;
   justify-content: center;
@@ -962,7 +984,6 @@ button:disabled,
 .change-form-card textarea,
 .change-form-card select {
   width: 100%;
-  box-sizing: border-box;
 
   padding: 0.75rem 0.9rem;
 
@@ -1010,10 +1031,18 @@ button:disabled,
   min-height: 40px;
 }
 
-.change-form-card button[type="submit"] {
-  align-self: flex-start;
-  margin-top: 1rem;
+/* Success message for add/edit submission */
+
+.success-message {
+  margin-bottom: 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(126, 214, 167, 0.35);
+  border-radius: var(--radius-md);
+  background: rgba(126, 214, 167, 0.1);
+  color: var(--success);
+  font-weight: 700;
 }
+
 
 /* End Change form CSS; Start About Page Contact Form CSS */
 
