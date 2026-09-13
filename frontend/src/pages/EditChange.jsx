@@ -125,18 +125,20 @@ export default function EditChange() {
  }
 
   return (
-    <main>
-      <h1>Edit Change</h1>
+    <main className="change-form-page">
+      <section className="change-form-card">
+          <h1>Edit Change</h1>
 
-      <ChangeForm
-        formData={formData}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        owners={owners}
-        assignmentGroups={assignmentGroups}
-        readinessStatuses={readinessStatuses}
-        submitLabel="Save Change"
-      />
+          <ChangeForm
+            formData={formData}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            owners={owners}
+            assignmentGroups={assignmentGroups}
+            readinessStatuses={readinessStatuses}
+            submitLabel="Save Change"
+        />
+      </section>
     </main>
   )
 

@@ -163,21 +163,40 @@ li + li {
 
 .header-title {
   margin: 0;
-  font-size: clamp(1.9rem, 4vw, 2.75rem);
-  line-height: 1.1;
+  font-family: inherit;
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
   font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  width: fit-content;
+}
+
+.header-title::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin-top: 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--purple-bright),
+    var(--lavender),
+    var(--gold-soft)
+  );
 }
 
 .header-tagline {
-  margin: 0.4rem 0 0;
-  color: var(--text-soft);
-  font-size: 0.98rem;
+  margin: 0.45rem 0 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
 }
 
 .brand-accent {
-  color: var(--gold-soft);
+  color: #e2b84f;
 }
 
 .navbar {
@@ -886,6 +905,117 @@ button:disabled,
 /* =========================
    Forms
    ========================= */
+
+.change-form-page {
+  display: flex;
+  justify-content: center;
+  width: min(var(--max-width), calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.change-form-card {
+  position: relative;
+  width: min(720px, 100%);
+  padding: 2rem;
+  overflow: hidden;
+
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-xl);
+
+  background: linear-gradient(
+  180deg,
+  rgba(255, 255, 255, 0.09),
+  rgba(255, 255, 255, 0.06)
+  );
+
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+}
+
+.change-form-card label {
+  display: block;
+  margin-bottom: 0.4rem;
+
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.change-form-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    var(--purple-bright),
+    var(--lavender),
+    var(--gold)
+  );
+}
+
+.change-form-card input,
+.change-form-card textarea,
+.change-form-card select {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 0.75rem 0.9rem;
+
+  border: 1px solid rgba(202, 125, 220, 0.25);
+  border-radius: var(--radius-md);
+
+  background: rgba(18, 13, 29, 0.72);
+  color: var(--text);
+
+  font: inherit;
+
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.change-form-card textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.change-form-card input:hover,
+.change-form-card textarea:hover,
+.change-form-card select:hover {
+  border-color: rgba(202, 125, 220, 0.45);
+}
+
+.change-form-card input:focus,
+.change-form-card textarea:focus,
+.change-form-card select:focus {
+  outline: none;
+
+  border-color: rgba(240, 196, 81, 0.7);
+  box-shadow: 0 0 0 3px rgba(240, 196, 81, 0.12);
+}
+
+.change-form-card input:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.change-form-card select {
+  min-height: 40px;
+}
+
+.change-form-card button[type="submit"] {
+  align-self: flex-start;
+  margin-top: 1rem;
+}
+
+/* End Change form CSS; Start About Page Contact Form CSS */
 
 .contact-form {
   margin-top: 1rem;

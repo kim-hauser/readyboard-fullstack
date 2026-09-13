@@ -107,19 +107,21 @@ export default function CreateChange() {
  }
 
   return (
-    <main>
-      <h1>Add Change</h1>
+     <main className="change-form-page">
+      <section className="change-form-card">
+        <h1>Add Change</h1>
 
-      <ChangeForm
-        formData={formData}
-        onChange={handleChange}
-        onSubmit={handleSubmit}
-        owners={owners}
-        assignmentGroups={assignmentGroups}
-        readinessStatuses={readinessStatuses}
-        submitLabel="Add Change"
-        disableId={false} // Change IDs are only allowed to be set when creating a new change.
-      />
+        <ChangeForm
+          formData={formData}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          owners={owners}
+          assignmentGroups={assignmentGroups}
+          readinessStatuses={readinessStatuses}
+          submitLabel="Add Change"
+          disableId={false} // Change IDs are only allowed to be set when creating a new change.
+        />
+      </section>
     </main>
   )
 }

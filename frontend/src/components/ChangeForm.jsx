@@ -11,7 +11,7 @@ export default function ChangeForm({
 
   return (
     <form onSubmit={onSubmit}>
-      <div>
+      <div className="form-group">
         <label htmlFor="id">Change ID</label>
         <input
           id="id"
@@ -24,7 +24,7 @@ export default function ChangeForm({
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="title">Title</label>
         <input
           id="title"
@@ -36,7 +36,7 @@ export default function ChangeForm({
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="description">Description</label>
         <textarea
           id="description"
@@ -46,7 +46,7 @@ export default function ChangeForm({
         />
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="ownerId">Owner</label>
         <select
           id="ownerId"
@@ -64,7 +64,7 @@ export default function ChangeForm({
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="assignmentGroupId">Assignment Group</label>
         <select
           id="assignmentGroupId"
@@ -82,7 +82,7 @@ export default function ChangeForm({
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="readinessStatusId">Readiness Status</label>
         <select
           id="readinessStatusId"
@@ -100,7 +100,7 @@ export default function ChangeForm({
         </select>
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="risk">Risk</label>
         <select
           id="risk"
