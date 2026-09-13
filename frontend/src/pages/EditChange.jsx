@@ -117,7 +117,7 @@ export default function EditChange() {
     }
 
   try {
-     const updateChange = await updateChange(id, changeData)
+     const updatedChange = await updateChange(id, changeData)
      console.log('Updated change:', updatedChange)
    } catch (error) {
      console.error('Error updating change:', error)
