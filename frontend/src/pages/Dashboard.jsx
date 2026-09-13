@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { getChanges } from '../services/changeService'
 import ChangeCard from '../components/ChangeCard'
 import FilterSelect from '../components/FilterSelect'
@@ -13,6 +13,8 @@ const columns = [
 ]
 
 function Dashboard() {
+  
+  const navigate = useNavigate()
 
   const [changes, setChanges] = useState([])
   
@@ -146,7 +148,7 @@ function Dashboard() {
             Assignment Group View
           </button>
         </div>
-  
+
         <div className="filter-bar">
           {viewMode === 'assignment' ? (
             <>
@@ -185,7 +187,16 @@ function Dashboard() {
             />
           )}
         </div>
-      </div>
+
+            <button
+              type="button"
+              onClick={() => navigate('/changes/new')}
+              className="add-change-button"
+            >
+              + Add Change
+            </button>
+  
+        </div>
 
       {viewMode === 'status' ? (
         <div className="columns">

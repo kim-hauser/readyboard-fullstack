@@ -605,33 +605,48 @@ button:disabled,
   }
 }
 
-/* Assignment grouping & View Toggle */
-
+/*View Toggle */
 .view-toggle {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 0;
-  flex-wrap: wrap;
+  display: inline-flex;
+  gap: 0;
+  margin-bottom: 1rem;
 }
 
 .view-toggle button {
-  padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  background: white;
-  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    rgba(120, 81, 169, 0.25),
+    rgba(120, 81, 169, 0.12)
+  );
+  color: #f4f1ff;
+  border: 1px solid rgba(120, 81, 169, 0.35);
+  box-shadow: none;
 }
 
-.view-toggle .active-toggle {
-  font-weight: 600;
-
-  color: #ffffff;
-
-  text-shadow:
-    0 0 6px rgba(255, 255, 255, 0.25),
-    0 0 10px rgba(184, 146, 66, 0.15);
+.view-toggle button:first-child {
+  border-radius: 8px 0 0 8px;
 }
 
+.view-toggle button:last-child {
+  border-radius: 0 8px 8px 0;
+  margin-left: -1px;
+}
+
+.view-toggle button:hover {
+  transform: none;
+  background: rgba(120, 81, 169, 0.2);
+  border-color: rgba(120, 81, 169, 0.5);
+  box-shadow: none;
+}
+
+.view-toggle button.active-toggle {
+  font-weight: 700;
+  background: rgba(120, 81, 169, 0.4);
+  border-color: #7c5cff;
+  box-shadow: inset 0 -2px 0 #7c5cff;
+}
+
+/* Assignment group view  */
 .assignment-group-view {
   display: flex;
   flex-direction: column;
@@ -648,50 +663,6 @@ button:disabled,
   display: grid;
   flex-wrap: wrap;
   gap: 1rem;
-}
-
-.view-toggle {
-  display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.75rem;
-  flex-wrap: wrap;
-}
-
-.view-toggle button {
-  background: linear-gradient(
-    135deg,
-    rgba(120, 81, 169, 0.25),
-    rgba(120, 81, 169, 0.12)
-  );
-
-  color: #f4f1ff;
-  border: 1px solid rgba(120, 81, 169, 0.35);
-}
-
-.view-toggle button:hover {
-  transform: translateY(-1px);
-  border-color: rgba(212, 175, 55, 0.6);
-
-  background: linear-gradient(
-    135deg,
-    rgba(212, 175, 55, 0.28),
-    rgba(120, 81, 169, 0.18)
-  );
-}
-
-.view-toggle button.active-toggle {
-  font-weight: 700;
-  border-color: #6d4aff;
-}
-
-.view-toggle .active-toggle {
-  background: linear-gradient(
-    135deg,
-    rgba(120, 81, 169, 0.35),
-    rgba(184, 146, 66, 0.25)
-  );
-
-  border-color: rgba(184, 146, 66, 0.5);
 }
 
 .assignment-group-view {
@@ -876,18 +847,18 @@ html {
 /* For Filter Dropdowns (both status and assignment views) */
 
 .dashboard-controls {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
+  gap: 2rem;
 }
 
 /* Filter bar layout */
 .filter-bar {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  justify-self: center;
+  gap: 1rem;
   flex-wrap: nowrap;
 }
 
@@ -1115,4 +1086,8 @@ display: inline-block;
 .back-to-top {
   display: block;
   margin-left: auto;
+}
+
+.add-change-button {
+  justify-self: end;
 }
