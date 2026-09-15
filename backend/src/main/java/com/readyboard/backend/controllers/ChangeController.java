@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-// CrossOrigin allows cross-origin requests from the React dev server (localhost:5173).
-@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/changes")
 public class ChangeController {
@@ -41,8 +39,6 @@ public class ChangeController {
     public Change getChangeById(@PathVariable String id) {
         return changeRepository.findById(id).orElse(null);
     }
-
-    //TODO: Add PATCH on Tuesday for "Partial Change" + 'null handling'
 
     @PostMapping
     public Change createChange(@RequestBody Change change) {

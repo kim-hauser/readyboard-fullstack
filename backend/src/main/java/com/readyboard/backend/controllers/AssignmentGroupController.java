@@ -3,6 +3,7 @@ package com.readyboard.backend.controllers;
 import com.readyboard.backend.models.AssignmentGroup;
 import com.readyboard.backend.repositories.AssignmentGroupRepository;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

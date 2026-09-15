@@ -1,4 +1,4 @@
-import rocket from '../assets/rocket.jpg'
+import profilePhoto from '../assets/KimProfile.jpeg'
 import { useState } from "react"
 
     // Sets default state to empty
@@ -68,34 +68,40 @@ function About() {
       <section className="card">
         <h2>Project Context</h2>
         <p>
-          This application was built as part of a front-end project to
-          demonstrate routing, component structure, and UI design using React. 
-          This tool currently uses mock data meant to be representative of "real-world" 
-          changes.
+        ReadyBoard was built as part of a full-stack development course to demonstrate a complete web application using React, JavaScript, Spring Boot, Java, and MySQL. 
+        The application includes reusable React components, client-side routing, form validation, asynchronous API integration, relational data, and full CRUD functionality 
+        for managing changes.
+        </p>
+        <p>
+        Change data is persisted in a MySQL database and accessed through a REST API, allowing users to create, view, update, and delete changes while tracking
+        ownership, assignment group, readiness status, and risk.
         </p>
       </section>
 
       <section className="card">
         <h2>About the Developer - Kim Hauser</h2>
         
-      <div className="about-rocket">
+      <div className="about-profile">
         <img 
-          src={rocket} 
-          alt="A stock image of a teal rocket with blue exhaust"
+          src={profilePhoto} 
+          alt="Kim Hauser"
           className="about-image"
         />
       </div>
         <p>
           Hi, I’m Kim—an IT professional and member of LaunchCode's Women+ Software Development cohort. 
-          I work with Microsoft 365 and Atlassian tools, helping teams navigate complex systems in a way that’s 
-          clear and approachable. I specialize in turning complex processes into intuitive, user-friendly experiences. 
-          I believe there’s no such thing as too good of a user experience—only better ways to reduce friction and 
-          improve clarity. 
+          I work with Microsoft 365 and Atlassian tools, helping teams navigate complex systems in ways that are 
+          clear and approachable.
         </p>
-        <p> 
-          I’m currently building ReadyBoard, a lightweight change management tool focused on improving 
-          visibility, reducing friction, and helping teams move faster with confidence. When I'm not working on my latest
-          project, I recharge by reading and getting outdoors.
+         <p>
+          ReadyBoard grew out of that same interest in reducing friction and making
+          operational work easier to understand. I designed and built the
+          application as a full-stack change management tool focused on improving
+          visibility into readiness, ownership, assignment groups, and risk.
+        </p>
+        <p>
+          When I’m not working on technology or building my latest project, I
+          recharge by reading and spending time outdoors.
         </p>
       </section>
 

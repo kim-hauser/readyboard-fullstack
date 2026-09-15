@@ -7,7 +7,7 @@ function ChangeCard({ change, viewMode }) {
     <div className="card">
       <h3>
         <Link 
-          to={`/change/${id}`}
+          to={`/changes/${id}`}
           state={{ fromView: viewMode }}
           >
           {title}

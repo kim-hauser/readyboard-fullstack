@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate} from 'react-router-dom'
 import { getChanges } from '../services/changeService'
 import ChangeCard from '../components/ChangeCard'
 import FilterSelect from '../components/FilterSelect'
@@ -13,6 +13,8 @@ const columns = [
 ]
 
 function Dashboard() {
+  
+  const navigate = useNavigate()
 
   const [changes, setChanges] = useState([])
   
@@ -27,6 +29,13 @@ function Dashboard() {
   const [viewMode, setViewMode] = useState(
     location.state?.restoreView || 'status'
   )
+
+  // Explicitly listen for restoreView:
+  useEffect(() => {
+    if (location.state?.restoreView) {
+      setViewMode(location.state.restoreView)
+    }
+  }, [location.state?.restoreView])
 
   // Status view filter
   const [selectedOwners, setSelectedOwners] = useState([])
@@ -125,10 +134,14 @@ function Dashboard() {
     })
   
   // Toggles between Status/Assignment views; filters live here too.
+  // Conditional rendering for dashboard-controls spaces out action buttons and filter dropdowns.
 
   return (
     <div className="page">
-      <div className="dashboard-controls">
+      <div className={`dashboard-controls ${
+        viewMode === 'assignment' ? 'assignment-controls' : ''
+      }`}
+      >
         <div className="view-toggle">
           <button
             type="button"
@@ -146,7 +159,7 @@ function Dashboard() {
             Assignment Group View
           </button>
         </div>
-  
+
         <div className="filter-bar">
           {viewMode === 'assignment' ? (
             <>
@@ -185,7 +198,20 @@ function Dashboard() {
             />
           )}
         </div>
-      </div>
+
+            <button
+              type="button"
+              onClick={() => 
+                navigate('/changes/new', {
+                  state: { fromView: viewMode }
+                })
+              }
+              className="add-change-button"
+            >
+              + Add Change
+            </button>
+  
+        </div>
 
       {viewMode === 'status' ? (
         <div className="columns">
@@ -238,7 +264,7 @@ function Dashboard() {
                   {changes.map((change) => (
                     <Link
                       key={change.id}
-                      to={`/change/${change.id}`}
+                      to={`/changes/${change.id}`}
                       state={{ fromView: viewMode }}
                       className="queue-row"
                     >

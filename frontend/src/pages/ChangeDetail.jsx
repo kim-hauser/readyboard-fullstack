@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useParams, useLocation } from 'react-router-dom'
-import { getChangeById } from '../services/changeService'
+import { Link, useLocation, useNavigate, useParams} from 'react-router-dom'
+import { getChangeById, deleteChange } from '../services/changeService'
 import ButtonLink from '../components/ButtonLink'
 
 function ChangeDetail() {
   const { id } = useParams()
 
   const location = useLocation()
-  const fromView = location.state?.fromView || 'status' 
+  const fromView = location.state?.fromView || 'status'
+  const navigate = useNavigate()
 
   /* Replaces Mock Changes with actual state + fetch */
 
@@ -35,6 +36,23 @@ function ChangeDetail() {
   )
 }
 
+ //Confirmation Window for Delete:
+  
+  async function handleDelete() {
+  const confirmed = window.confirm(
+    `Delete change ${change.id}? This cannot be undone.`
+  )
+
+  if (!confirmed) return
+
+  try {
+    await deleteChange(change.id)
+    navigate('/dashboard')
+  } catch (error) {
+    console.error('Error deleting change:', error)
+  }
+}
+
   /* Checks for valid changes; gives error page if invalid ID */
   /* Also contains both variants of ButtonLink component as props */
 
@@ -57,26 +75,50 @@ function ChangeDetail() {
     )
   }
 
-  return (
-    <div className="page">
-      <section className="card">
-        <h1>{change.title}</h1>
-        <p><strong>ID:</strong> {change.id}</p>
-        <p><strong>Owner:</strong> {change.owner}</p>
-        <p><strong>Assignment Group:</strong> {change.assignmentGroup}</p>
-        <p><strong>Status:</strong> {change.status}</p>
-        <p><strong>Risk:</strong> {change.risk}</p>
-        <p><strong>Description:</strong> {change.description}</p>
-        <ButtonLink 
+return (
+  <div className="page">
+    <section className="card">
+      <h1>{change.title}</h1>
+      <p><strong>ID:</strong> {change.id}</p>
+      <p><strong>Owner:</strong> {change.owner}</p>
+      <p><strong>Assignment Group:</strong> {change.assignmentGroup}</p>
+      <p><strong>Status:</strong> {change.status}</p>
+      <p><strong>Risk:</strong> {change.risk}</p>
+      <p><strong>Description:</strong> {change.description}</p>
+
+      <div className="change-detail-actions">
+        <ButtonLink
           to="/dashboard"
           state={{ restoreView: fromView }}
-          variant = "secondary"
-          >
-          ← Back to {fromView === 'assignment' ? 'Assignment Group View' : 'Status View'}
+          variant="secondary"
+        >
+          ← Back to {fromView === 'assignment'
+            ? 'Assignment Group View'
+            : 'Status View'}
         </ButtonLink>
-      </section>
-    </div>
-  )
+
+        <div className="change-detail-actions-right">
+          <ButtonLink
+            to={`/changes/${change.id}/edit`}
+            variant="secondary"
+            to={`/changes/${change.id}/edit`}
+            state={{ fromView: location.state?.fromView || 'status' }}
+          >
+            Edit Change
+          </ButtonLink>
+
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="button-link tertiary"
+          >
+            Delete Change
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+ )
 }
 
 export default ChangeDetail
