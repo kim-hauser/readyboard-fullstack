@@ -69,6 +69,7 @@ Change operations support standard CRUD functionality using GET, POST, PUT, and 
 * CSS
 * React Router
 * Fetch API
+* Papa Parse – CSV parsing for change imports
 
 ### Backend
 

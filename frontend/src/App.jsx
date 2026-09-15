@@ -3,6 +3,7 @@ import About from './pages/About'
 import BackToTop from './components/BackToTop'
 import ChangeDetail from './pages/ChangeDetail'
 import CreateChange from './pages/CreateChange'
+import ChangeImport from './pages/ChangeImport'
 import Dashboard from './pages/Dashboard'
 import EditChange from './pages/EditChange'
 import Footer from './components/Footer'
@@ -20,9 +21,12 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/changes" element={<Dashboard />} />
         <Route path="/changes/new" element={<CreateChange />} />
+        <Route path="/changes/import" element={<ChangeImport />} />
+        <Route path="/dashboard" element={<Dashboard />} /> {/* Works as a redirect. */}
         <Route path="/changes/:id" element={<ChangeDetail />} />
         <Route path="/changes/:id/edit" element={<EditChange />} />
-        <Route path="/dashboard" element={<Dashboard />} /> {/* Works as a redirect. */}
+    
+     
         
       </Routes>
       <BackToTop />
