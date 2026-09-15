@@ -123,6 +123,23 @@ Core application entities include:
 Relationships between these entities allow change records to reference reusable ownership, team, and readiness information rather than storing duplicate values.
 
 ---
+
+## 📐 Project Documentation
+
+### Wireframes
+
+Initial wireframes used to plan ReadyBoard's dashboard, navigation, and change-management workflows:
+
+![ReadyBoard Wireframes](readyboard-fullstack/readyboard-wireframe.png)
+
+### ER Diagram
+
+ReadyBoard's relational data model includes Change, Owner, Assignment Group, and Readiness Status entities:
+
+![ReadyBoard ER Diagram](readyboard-fullstack/readyboard-ERD.png)
+
+---
+
 ## 🚀 Running ReadyBoard Locally
 
 ReadyBoard uses a **React/Vite frontend** and a **Spring Boot backend** with Hibernate/JPA and MySQL persistence.
@@ -190,16 +207,17 @@ Full-stack deployment is in progress.
 
 ---
 
-## 🔮 Future Enhancements
+## 🔮 Current Limitations & Future Enhancements
 
-Potential future development includes:
+Current development priorities and potential future enhancements include:
 
-* CSV-based change import
-* Improved validation and error handling
-* Persistent user filter preferences
-* Additional reporting and summary views
-* Authentication and role-based access
-* Expanded readiness and change-management workflows
+- Full-stack deployment
+- CSV-based change import
+- Improved validation and error handling
+- Persistent user filter preferences
+- Additional reporting and summary views
+- Authentication and role-based access
+- Expanded readiness and change-management workflows
 
 ---
 
