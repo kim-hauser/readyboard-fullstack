@@ -40,8 +40,6 @@ public class ChangeController {
         return changeRepository.findById(id).orElse(null);
     }
 
-    //TODO: Add PATCH on Tuesday for "Partial Change" + 'null handling'
-
     @PostMapping
     public Change createChange(@RequestBody Change change) {
         return changeRepository.save(change);
