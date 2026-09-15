@@ -130,13 +130,13 @@ Relationships between these entities allow change records to reference reusable 
 
 Initial wireframes used to plan ReadyBoard's dashboard, navigation, and change-management workflows:
 
-![ReadyBoard Wireframes](readyboard-fullstack/readyboard-wireframe.png)
+![ReadyBoard Wireframes](documentation/readyboard-wireframe.png)
 
 ### ER Diagram
 
 ReadyBoard's relational data model includes Change, Owner, Assignment Group, and Readiness Status entities:
 
-![ReadyBoard ER Diagram](readyboard-fullstack/readyboard-ERD.png)
+![ReadyBoard ER Diagram](documentation/readyboard-ERD.png)
 
 ---
 
@@ -197,7 +197,6 @@ http://localhost:5173
 ```
 
 Both the backend and frontend should be running to use the full application locally.
-
 
 ---
 
