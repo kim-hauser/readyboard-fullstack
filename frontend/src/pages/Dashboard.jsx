@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate} from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { getChanges } from '../services/changeService'
 import ChangeCard from '../components/ChangeCard'
 import FilterSelect from '../components/FilterSelect'
@@ -29,13 +29,6 @@ function Dashboard() {
   const [viewMode, setViewMode] = useState(
     location.state?.restoreView || 'status'
   )
-
-  // Explicitly listen for restoreView:
-  useEffect(() => {
-    if (location.state?.restoreView) {
-      setViewMode(location.state.restoreView)
-    }
-  }, [location.state?.restoreView])
 
   // Status view filter
   const [selectedOwners, setSelectedOwners] = useState([])

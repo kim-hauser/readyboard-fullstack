@@ -1270,3 +1270,33 @@ button:disabled,
     justify-content: space-between;
   }
 }
+
+/* =========================
+   Import / Preview
+   ========================= */
+
+.import-preview {
+  overflow-x: auto;
+}
+
+.import-preview {
+  margin-top: 1rem;
+}
+
+.import-preview table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.import-preview th,
+.import-preview td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.import-preview th {
+  white-space: nowrap;
+}
+
