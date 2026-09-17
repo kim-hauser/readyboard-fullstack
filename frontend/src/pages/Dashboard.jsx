@@ -254,7 +254,7 @@ function Dashboard() {
                   <div>
                     <h2>{groupName}</h2>
                     <p className="queue-bucket-meta">
-                      {changes.length} total · Ready: {readyCount} · Pending:{' '}
+                      {changes.length} Total · Ready: {readyCount} · Pending:{' '}
                       {pendingCount} · Open: {openCount}
                     </p>
                   </div>
