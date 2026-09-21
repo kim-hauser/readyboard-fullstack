@@ -1,6 +1,8 @@
 # ReadyBoard
 
-ReadyBoard is a full-stack change management application designed to help teams quickly assess, prioritize, and manage changes based on readiness, ownership, assignment group, and risk. Built with React/JavaScript, Spring Boot/Java, Hibernate/JPA, and MySQL, ReadyBoard provides a centralized, highly scannable dashboard backed by persistent relational data and RESTful CRUD APIs. Users can create, view, update, and delete changes, organize work through status- and assignment-based views, and dynamically filter the dashboard to surface the information most relevant to operational decision-making. 
+ReadyBoard is a full-stack change management application designed to help teams quickly assess, prioritize, and manage changes based on readiness, ownership, assignment group, and risk. Built with React/JavaScript, Spring Boot/Java, Hibernate/JPA, and MySQL, ReadyBoard provides a centralized, highly scannable dashboard backed by persistent relational data and RESTful CRUD APIs.
+
+Users can create, view, update, delete, and bulk-import changes, organize work through status- and assignment-based views, and dynamically filter the dashboard to surface information most relevant to operational decision-making.
 
 Originally developed as a LaunchCode capstone project, ReadyBoard was inspired by real-world change management workflows and evolved through iterative development and user feedback, with an emphasis on usability, practical product design, and translating business needs into working software.
 
@@ -12,6 +14,14 @@ Originally developed as a LaunchCode capstone project, ReadyBoard was inspired b
 * View detailed information for individual changes
 * Associate changes with owners, assignment groups, and readiness statuses
 * Persist application data in a MySQL relational database
+
+### 📥 CSV Change Import
+
+* Import multiple change records from CSV files
+* Preview parsed change data before importing
+* Match owners, assignment groups, and readiness statuses to existing relational data
+* Automatically calculate risk scores from imported risk levels
+* Display success and error feedback during the import process
 
 ### 🔄 Multiple Dashboard Views
 
@@ -59,6 +69,26 @@ Change operations support standard CRUD functionality using GET, POST, PUT, and 
 
 ---
 
+### ✉️ Contact Form
+
+* Submit feedback or contact messages directly through the About page
+* Validate name, email, and message content on the client before submission
+* Send form data asynchronously using the Fetch API
+* Integrate with Formspree for form processing and email delivery
+* Provide success and error feedback based on the submission response
+
+---
+
+### 📄 CSV Import Format
+
+ReadyBoard supports bulk change creation using CSV files with the following headers:
+
+`id,title,description,owner,assignmentGroup,readinessStatus,risk`
+
+Owner, assignment group, and readiness status values must currently match existing records in the database. Rows containing unmatched lookup values will not be imported.
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Frontend
@@ -70,6 +100,7 @@ Change operations support standard CRUD functionality using GET, POST, PUT, and 
 * React Router
 * Fetch API
 * Papa Parse – CSV parsing for change imports
+* Formspree – Contact form processing and email delivery
 
 ### Backend
 
@@ -122,6 +153,12 @@ Core application entities include:
 * Readiness Status
 
 Relationships between these entities allow change records to reference reusable ownership, team, and readiness information rather than storing duplicate values.
+
+The contact form uses a separate lightweight integration:
+
+`React → Fetch API → Formspree → Email`
+
+This allows contact submissions to be processed and delivered without requiring ReadyBoard's backend to manage email infrastructure.
 
 ---
 
@@ -201,19 +238,19 @@ Both the backend and frontend should be running to use the full application loca
 
 ---
 
-## 🚀 Deployment
+## 🌐 Deployment
 
-Full-stack deployment is in progress.
+Full-stack deployment is planned as a future enhancement.
 
 ---
 
 ## 🔮 Current Limitations & Future Enhancements
 
-Current development priorities and potential future enhancements include:
+Potential future enhancements include:
 
 - Full-stack deployment
-- CSV-based change import
-- Improved validation and error handling
+- Automatically create missing owners and assignment groups during CSV import
+- Expanded validation and import error handling
 - Persistent user filter preferences
 - Additional reporting and summary views
 - Authentication and role-based access
@@ -231,6 +268,8 @@ Building ReadyBoard provided hands-on experience with:
 * Designing relational data models with MySQL
 * Using JPA/Hibernate to manage entity relationships and persistence
 * Managing asynchronous API requests and React state
+* Parsing and validating CSV data in a React application
+* Mapping imported human-readable values to relational database entities
 * Building reusable React components
 * Designing forms and validating user input
 * Testing REST endpoints with Postman
