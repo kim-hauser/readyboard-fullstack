@@ -69,6 +69,16 @@ Change operations support standard CRUD functionality using GET, POST, PUT, and 
 
 ---
 
+### ✉️ Contact Form
+
+* Submit feedback or contact messages directly through the About page
+* Validate name, email, and message content on the client before submission
+* Send form data asynchronously using the Fetch API
+* Integrate with Formspree for form processing and email delivery
+* Provide success and error feedback based on the submission response
+
+---
+
 ### 📄 CSV Import Format
 
 ReadyBoard supports bulk change creation using CSV files with the following headers:
@@ -90,6 +100,7 @@ Owner, assignment group, and readiness status values must currently match existi
 * React Router
 * Fetch API
 * Papa Parse – CSV parsing for change imports
+* Formspree – Contact form processing and email delivery
 
 ### Backend
 
@@ -142,6 +153,12 @@ Core application entities include:
 * Readiness Status
 
 Relationships between these entities allow change records to reference reusable ownership, team, and readiness information rather than storing duplicate values.
+
+The contact form uses a separate lightweight integration:
+
+`React → Fetch API → Formspree → Email`
+
+This allows contact submissions to be processed and delivered without requiring ReadyBoard's backend to manage email infrastructure.
 
 ---
 

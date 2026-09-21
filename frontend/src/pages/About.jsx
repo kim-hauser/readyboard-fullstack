@@ -1,40 +1,65 @@
 import profilePhoto from '../assets/KimProfile.jpeg'
 import { useState } from "react"
 
-    // Sets default state to empty
 function About() {
+  // Sets default state to empty
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
 
-  const handleSubmit = (event) => {
-    event.preventDefault() // Stops reload onSubmit; allows React to handle form data.
+  // Handles form submission to Formspree
+  const handleSubmit = async (event) => {
+    event.preventDefault()
 
-    // Handles invalid entries:
-
+    // Prevents invalid form submission
     if (!isFormValid) return
-    
-    setName("")
-    setEmail("")
-    setMessage("")
-  }
-    // Checks email format using Regex
 
+    try {
+      const response = await fetch("https://formspree.io/f/xwlplbva", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message,
+        }),
+      })
+
+      if (response.ok) {
+        alert("Thanks! Your message has been submitted.")
+
+        // Clears form after successful submission
+        setName("")
+        setEmail("")
+        setMessage("")
+      } else {
+        alert("Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      console.error("Form submission error:", error)
+      alert("Something went wrong. Please try again.")
+    }
+  }
+
+  // Checks email format using Regex
   const isValidEmail = (email) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   }
-    // Checks for valid name  >= 3 characters
 
+  // Checks for valid name >= 3 characters
   const isValidName = (name) => {
     return name.trim().length >= 3
   }
 
-    // Checks for valid message length >= 50 characters
+  // Checks for valid message length >= 50 characters
   const isValidMessage = (message) => {
     return message.trim().length >= 50
   }
 
-    //Confirms all 3 -> Valid name, email, message content.
+  // Confirms valid name, email, and message content
   const isFormValid =
     isValidName(name) &&
     isValidEmail(email) &&
@@ -68,37 +93,47 @@ function About() {
       <section className="card">
         <h2>Project Context</h2>
         <p>
-        ReadyBoard was built as part of a full-stack development course to demonstrate a complete web application using React, JavaScript, Spring Boot, Java, and MySQL. 
-        The application includes reusable React components, client-side routing, form validation, asynchronous API integration, relational data, and full CRUD functionality 
-        for managing changes.
+          ReadyBoard was built as part of a full-stack development course to
+          demonstrate a complete web application using React, JavaScript,
+          Spring Boot, Java, and MySQL. The application includes reusable React
+          components, client-side routing, form validation, asynchronous API
+          integration, relational data, and full CRUD functionality for
+          managing changes.
         </p>
         <p>
-        Change data is persisted in a MySQL database and accessed through a REST API, allowing users to create, view, update, and delete changes while tracking
-        ownership, assignment group, readiness status, and risk.
+          Change data is persisted in a MySQL database and accessed through a
+          REST API, allowing users to create, view, update, and delete changes
+          while tracking ownership, assignment group, readiness status, and
+          risk.
         </p>
       </section>
 
       <section className="card">
         <h2>About the Developer - Kim Hauser</h2>
-        
-      <div className="about-profile">
-        <img 
-          src={profilePhoto} 
-          alt="Kim Hauser"
-          className="about-image"
-        />
-      </div>
+
+        <div className="about-profile">
+          <img
+            src={profilePhoto}
+            alt="Kim Hauser"
+            className="about-image"
+          />
+        </div>
+
         <p>
-          Hi, I’m Kim—an IT professional and member of LaunchCode's Women+ Software Development cohort. 
-          I work with Microsoft 365 and Atlassian tools, helping teams navigate complex systems in ways that are 
-          clear and approachable.
+          Hi, I’m Kim—an IT professional and member of LaunchCode's Women+
+          Software Development cohort. I work with Microsoft 365 and Atlassian
+          tools, helping teams navigate complex systems in ways that are clear
+          and approachable.
         </p>
-         <p>
-          ReadyBoard grew out of that same interest in reducing friction and making
-          operational work easier to understand. I designed and built the
-          application as a full-stack change management tool focused on improving
-          visibility into readiness, ownership, assignment groups, and risk.
+
+        <p>
+          ReadyBoard grew out of that same interest in reducing friction and
+          making operational work easier to understand. I designed and built
+          the application as a full-stack change management tool focused on
+          improving visibility into readiness, ownership, assignment groups,
+          and risk.
         </p>
+
         <p>
           When I’m not working on technology or building my latest project, I
           recharge by reading and spending time outdoors.
@@ -108,11 +143,11 @@ function About() {
       <section className="card">
         <h2>Contact Me</h2>
         <p>
-          Have feedback, ideas, or just want to connect? I’d love to hear from you.
+          Have feedback, ideas, or just want to connect? I’d love to hear from
+          you.
         </p>
 
         <form className="contact-form" onSubmit={handleSubmit}>
-          
           {/* Name form items + event handler + validation */}
           <div className="form-group">
             <label htmlFor="name">Name</label>
@@ -122,7 +157,9 @@ function About() {
               name="name"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className={name && !isValidName(name) ? "input-invalid" : ""} // className is used as a conditional here, valid shows.
+              className={
+                name && !isValidName(name) ? "input-invalid" : ""
+              }
             />
 
             {name && !isValidName(name) && (
@@ -141,7 +178,9 @@ function About() {
               name="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className={email && !isValidEmail(email) ? "input-invalid" : ""}
+              className={
+                email && !isValidEmail(email) ? "input-invalid" : ""
+              }
             />
 
             {email && !isValidEmail(email) && (
@@ -152,7 +191,6 @@ function About() {
           </div>
 
           {/* Message form items + event handler + character count validation */}
-
           <div className="form-group">
             <label htmlFor="message">Message</label>
             <textarea
@@ -160,17 +198,19 @@ function About() {
               name="message"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              className={message && !isValidMessage(message) ? "input-invalid" : ""}
+              className={
+                message && !isValidMessage(message) ? "input-invalid" : ""
+              }
             />
 
             {message && !isValidMessage(message) && (
-             <p className="character-count">
-              {message.trim().length}/50 characters
-            </p>
+              <p className="character-count">
+                {message.trim().length}/50 characters
+              </p>
             )}
           </div>
 
-          {/* Submit button is disabled while form remains not valid. */} 
+          {/* Submit button is disabled while form remains invalid */}
           <button type="submit" disabled={!isFormValid}>
             Submit
           </button>
