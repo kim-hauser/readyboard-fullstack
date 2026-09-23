@@ -101,7 +101,6 @@ return (
           <ButtonLink
             to={`/changes/${change.id}/edit`}
             variant="secondary"
-            to={`/changes/${change.id}/edit`}
             state={{ fromView: location.state?.fromView || 'status' }}
           >
             Edit Change

@@ -125,8 +125,7 @@ export default function EditChange() {
     }
 
   try {
-     const updatedChange = await updateChange(id, changeData)
-     console.log('Updated change:', updatedChange)
+     await updateChange(id, changeData)
 
      setSuccessMessage('Change edited successfully.')
    } catch (error) {
