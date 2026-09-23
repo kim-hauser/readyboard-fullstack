@@ -1300,3 +1300,28 @@ button:disabled,
   white-space: nowrap;
 }
 
+/* =========================
+   About Me Submission
+   ========================= */
+
+.form-notification {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form-notification.success {
+  color: #8bcf91;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.25);
+}
+
+.form-notification.error {
+  color: #e57373;
+  background: rgba(229, 115, 115, 0.1);
+  border: 1px solid rgba(229, 115, 115, 0.25);
+}

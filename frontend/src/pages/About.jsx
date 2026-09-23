@@ -6,6 +6,8 @@ function About() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [message, setMessage] = useState("")
+  const [submitMessage, setSubmitMessage] = useState("")
+  const [submitStatus, setSubmitStatus] = useState("")
 
   // Handles form submission to Formspree
   const handleSubmit = async (event) => {
@@ -29,18 +31,21 @@ function About() {
       })
 
       if (response.ok) {
-        alert("Thanks! Your message has been submitted.")
+        setSubmitMessage("Thanks! Your message has been submitted.")
+        setSubmitStatus("success")
 
         // Clears form after successful submission
         setName("")
         setEmail("")
         setMessage("")
       } else {
-        alert("Something went wrong. Please try again.")
+        setSubmitMessage("Something went wrong. Please try again.")
+        setSubmitStatus("error")
       }
     } catch (error) {
       console.error("Form submission error:", error)
-      alert("Something went wrong. Please try again.")
+      setSubmitMessage("Something went wrong. Please try again.")
+      setSubmitStatus("error")
     }
   }
 
@@ -209,7 +214,15 @@ function About() {
               </p>
             )}
           </div>
-
+        {submitMessage && (
+          <div
+            className={`form-notification ${submitStatus}`}
+            role="status"
+            aria-live="polite"
+          >
+        {submitMessage}
+          </div>
+            )}
           {/* Submit button is disabled while form remains invalid */}
           <button type="submit" disabled={!isFormValid}>
             Submit

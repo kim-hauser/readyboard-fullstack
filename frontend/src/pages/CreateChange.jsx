@@ -102,8 +102,7 @@ export default function CreateChange() {
     }
 
   try {
-     const createdChange = await createChange(changeData)
-     console.log('Created change:', createdChange)
+     await createChange(changeData)
 
      setSuccessMessage('Change created successfully.')
    } catch (error) {
